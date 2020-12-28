@@ -1,0 +1,62 @@
+[user]
+	name = Kolja Dummann
+	email = kolja.dummann@logv.ws
+	signingkey = BCBE2EE96582A121
+
+[core]
+	autocrlf = input
+	editor = code -w
+	logAllRefUpdates = true
+
+[merge "mps"]
+	name = MPS merge driver
+	driver = "\"/Users/kdummann/Library/Preferences/MPS2019.1/mps-merger.sh\" %O %A %B %L"
+[color]
+	ui = true
+[alias]
+        fuck-it = reset --hard
+        fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --pretty=%B)\"'
+        c = commit -S
+        s = status
+        pop = stash pop
+        ca = commit -a -S
+        l = log
+        co = checkout
+        m = merge
+        mps-clean = clean -fxd -e build.properties -e gradle.properties -e projectlibraries.overrides.properties
+        tree = log --graph --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+        branch-diff = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %Cblue%an%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	smu = submodule update --init --recursive
+	clean-sweep = !sh -c "git fetch -p && for branch in `git branch -vv | grep ': gone]' | gawk '{print $1}'`; do git branch -D $branch; done"
+
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
+[transfer]
+        fsckobjects = true
+[fetch]
+        fsckobjects = true
+[receive]
+        fsckObjects = true
+[webui]
+	autoupdate = true
+[pull]
+	ff = only
+
+# This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
+[include]
+  #path = /Users/kdummann/.netlify/helper/git-config
