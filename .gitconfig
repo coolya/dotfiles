@@ -1,8 +1,3 @@
-[user]
-	name = Kolja Dummann
-	email = kolja.dummann@logv.ws
-	signingkey = BCBE2EE96582A121
-
 [core]
 	autocrlf = input
 	editor = code -w
