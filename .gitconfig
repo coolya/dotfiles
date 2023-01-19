@@ -10,11 +10,10 @@
 	ui = true
 [alias]
         fuck-it = reset --hard
-        fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --pretty=%B)\"'
-        c = commit -S
+        c = commit 
         s = status
         pop = stash pop
-        ca = commit -a -S
+        ca = commit -a 
         l = log
         co = checkout
         m = merge
@@ -51,7 +50,7 @@
 	autoupdate = true
 [pull]
 	ff = only
-
+	autostash = true 
 # This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
 [include]
   #path = /Users/kdummann/.netlify/helper/git-config
